@@ -6,11 +6,11 @@ public class shoot : MonoBehaviour
 {
     public Rigidbody projectile;
     public float power = 100;
-    public int max_rate;
 
-    private int rate = 10;
+    public int CoolDown = 1;
     private int Shoot = 0;
     private object touch;
+    private bool inCoolDown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class shoot : MonoBehaviour
     void Update()
     {
         // Ctrl was pressed, launch a projectile
-        if (Input.GetButton("Fire1") && Shoot == 0)
+        if (Input.GetButtonDown("Fire1") && inCoolDown == false)
         {
             // Instantiate the projectile at the position and rotation of this transform
             Rigidbody clone;
@@ -31,14 +31,15 @@ public class shoot : MonoBehaviour
             // Give the cloned object an initial velocity along the current
             // object's Z axis
             clone.velocity = transform.TransformDirection(Vector3.forward * power * 2);
-            Destroy(clone.gameObject, 10);
-            Shoot = 1;
+            Destroy(clone.gameObject, 5);
+            inCoolDown = true;
+            StartCoroutine(CoolDownShoot());
         }
-        if (rate < 0)
-        {
-            rate = max_rate;
-            Shoot = 0;
-        }
-        rate--;
+    }
+
+    private IEnumerator CoolDownShoot()
+    {
+        yield return new WaitForSeconds(CoolDown);
+        inCoolDown = false;
     }
 }

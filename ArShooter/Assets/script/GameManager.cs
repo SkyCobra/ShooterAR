@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private int g_score = 0;
     int frame = 0;
     public Text score_text;
+    public GameObject Ennemi;
 
     void Start()
     {
@@ -29,6 +30,31 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene("Shooter", LoadSceneMode.Single);
+    }
+
+    public void ScorePlus()
+    {
+        score += 1;
+        score_text.text = "score = " + score + " / 50";
+        SpawnEnnemi();
+    }
+
+    void SpawnEnnemi()
+    {
+        Instantiate(Ennemi, RandomPos(), Quaternion.identity);
+    }
+
+    Vector3 RandomPos()
+    {
+        Vector3 RdmTransform;
+        float x, y, z;
+
+        x = Random.Range(-10, 10);
+        y = Random.Range(-10, 10);
+        z = Random.Range(2, 10);
+        RdmTransform = new Vector3(x, y, z);
+
+        return RdmTransform;
     }
 }
     // Scene HackHub
