@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector]
     public int score = 0;
     private int g_score = 0;
     int frame = 0;
