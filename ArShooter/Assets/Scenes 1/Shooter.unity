@@ -305,7 +305,7 @@ MonoBehaviour:
   projectile: {fileID: 8905646286605361887, guid: 953ecce41291b5c448d71b3b6d996c15,
     type: 3}
   power: 10
-  CoolDown: 1
+  CoolDown: 0.2
 --- !u!1 &815067582
 GameObject:
   m_ObjectHideFlags: 0

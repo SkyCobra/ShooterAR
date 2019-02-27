@@ -7,7 +7,7 @@ public class shoot : MonoBehaviour
     public Rigidbody projectile;
     public float power = 100;
 
-    public int CoolDown = 1;
+    public float CoolDown = 1;
     private int Shoot = 0;
     private object touch;
     private bool inCoolDown = false;
